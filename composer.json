@@ -1,0 +1,15 @@
+{
+    "require": {
+        "twbs/bootstrap": "^4.5"
+    },
+    "scripts": {
+      "post-install-cmd": [
+        "rm -rf public/bootstrap",
+        "cp -R vendor/twbs/bootstrap/dist public/bootstrap"
+      ],
+      "post-update-cmd": [
+        "rm -rf public/bootstrap",
+        "cp -R vendor/twbs/bootstrap/dist public/bootstrap"
+      ]
+    }
+}

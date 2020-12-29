@@ -1,0 +1,13 @@
+# Exclude IDE folders and files
+.idea
+.vscode
+.notgitted
+*\~
+.*\~
+tags
+
+# Exclude vendors dire
+vendor/*
+!vendor/.gitkeep
+public/*
+!public/.gitkeep
