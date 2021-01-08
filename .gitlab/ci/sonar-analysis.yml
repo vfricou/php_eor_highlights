@@ -1,0 +1,15 @@
+---
+sonarqube-analysis:
+  stage: sonar-analysis
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  variables:
+    GIT_DEPTH: "0"
+  script:
+    - sonar-scanner -Dsonar.host.url="${SONAR_HOST}" -Dsonar.login="${SONAR_USER_TOKEN}"
+  allow_failure: true
+  only:
+    - merge_requests
+    - master
+    - dev

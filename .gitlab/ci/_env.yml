@@ -1,0 +1,5 @@
+---
+stages:
+  - sonar-analysis
+
+#variables:
