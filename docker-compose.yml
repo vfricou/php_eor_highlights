@@ -1,0 +1,30 @@
+---
+version: '3.7'
+
+services:
+  # Nginx server configuration
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile_nginx
+    image: rgmrhigh_nginx:1.19
+    container_name: eor_highligths_web
+    depends_on:
+      - php
+    links:
+      - php
+    volumes:
+      - ./conf/define.php:/var/www/html/conf/define.php
+    ports:
+      - "8080:80"
+
+  # PHP FPM
+  php:
+    #    image: php:8.0-fpm-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile_php-fpm
+    image: rgmrhigh_php:8.0-fpm-alpine
+    container_name: eor_highligths_fpm
+    volumes:
+      - ./conf/define.php:/var/www/html/conf/define.php

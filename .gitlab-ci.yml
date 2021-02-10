@@ -1,0 +1,3 @@
+include:
+  - local: '.gitlab/ci/_env.yml'
+  - local: '.gitlab/ci/sonar-analysis.yml'

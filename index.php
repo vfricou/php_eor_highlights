@@ -1,5 +1,5 @@
 <?php
-  require_once 'include/define.php';
+  require_once 'conf/define.php';
   require 'include/functions.php';
   require 'include/vars.php';
 ?>
@@ -7,14 +7,13 @@
 <html lang="en">
   <?php require 'include/html_head.php'; ?>
   <body>
-    <?php require 'include/html_navbar.php'; ?>
-    <div class="container-fluid">
-      <?php
-        $dateyear = Date('Y');
-        $datemonth = date('m');
-        ?>
-      <form action="include/insert_data.php" method="POST">
-        <div class="container">
+    <?php require 'include/html_navbar.php';
+      $dateyear = Date('Y');
+      $datemonth = date('m');
+    ?>
+    <div class="container-fluid min-vh-100">
+      <div class="container">
+        <form action="include/insert_data.php" method="POST">
           <div class="row">
             <div class="col-md-6 mb-3 mt-5">
               <div class="input-group">
@@ -87,8 +86,58 @@
                 <button class="btn btn-primary me-md-2" type="submit">Submit</button>
               </div>
             </div>
-          </div>
-      </form>
+        </form>
+      </div>
+
+
+      <div class="container pt-5">
+        <h3 class="h3" id="tabledesc">Last 3 month comments</h3>
+        <table class="table" aria-describedby="tabledesc">
+          <tr>
+            <th scope="col">Application</th>
+            <th scope="col">Year</th>
+            <th scope="col">Month</th>
+            <th scope="col">Comment</th>
+            <th scope="col"></th>
+          </tr>
+
+            <?php
+              mysql_connect($db_name);
+              if ($month_now <= 02) {
+                $year = $year_now - 1;
+                if ($month_now == 01) {
+                  $month = 11;
+                } elseif ($month_now == 02) {
+                  $month = 12;
+                }
+              } else {
+                $year = $year_now;
+              }
+
+              $comment_list = $mysql_connection->query("
+                  SELECT DAP_ID,DAP_NAME,dca_year,dca_month,dca_comment
+                  FROM d_appli_contract_month_comment
+                      JOIN d_application ON dca_appli_id=DAP_ID
+                  WHERE concat(dca_year,dca_month) > DATE_FORMAT(DATE_SUB(curdate(), INTERVAL 3 MONTH ), '%Y%m')
+                  ORDER BY `DAP_NAME` ASC;");
+              while ($row = $comment_list->fetch_assoc()){
+                print_r("<tr>");
+                print_r("<td>" . $row['DAP_NAME'] . $table_td_close);
+                print_r("<td>" . $row['dca_year'] . $table_td_close);
+                print_r("<td>" . $row['dca_month'] . $table_td_close);
+                print_r("<td>" . $row['dca_comment'] . $table_td_close);
+                print_r("<td>");
+                $url_chain = base64_encode(serialize($row));
+                print_r(sprintf("<a class=\"btn btn-danger\" href=\"include/delete_data.php?opts=%s\" role=\"button\">Delete</a>", $url_chain));
+                print_r($table_td_close);
+                print_r("</tr>");
+              }
+              $mysql_connection->close();
+            ?>
+
+        </table>
+      </div>
     </div>
   </body>
+
 </html>

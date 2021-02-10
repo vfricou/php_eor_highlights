@@ -1,4 +1,6 @@
 <?php
+  require 'vars.php';
+
   function mysql_connect($db_database)
   {
     global $db_host;
