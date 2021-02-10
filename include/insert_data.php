@@ -1,6 +1,7 @@
 <?php
   include_once 'define.php';
   include 'functions.php';
+  require 'vars.php';
 ?>
 
 <!doctype html>
@@ -15,7 +16,7 @@
           $result = $mysql_connection->query("SELECT DAP_ID FROM d_application WHERE DAP_SOURCE = 'global' and DAP_NAME = '$_POST[app_selector]'");
           $row = $result->fetch_assoc();
           $sql_insert = "INSERT INTO d_appli_contract_month_comment (dca_appli_id,dca_year,dca_month,dca_comment)
-          VALUES (".$row['DAP_ID'].",".$_POST[year_selector].",".$_POST[month_selector].",'".$_POST[desc]."')";
+          VALUES (".$row['DAP_ID'].",".$_POST['year_selector'].",".$_POST['month_selector'].",'".$_POST['desc']."')";
 
           if ($mysql_connection->query($sql_insert) === TRUE) {
             echo '<div class="alert alert-info mt-5" role="alert">New highlight correctly inserted</div>';

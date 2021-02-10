@@ -1,6 +1,7 @@
 <?php
   include_once 'define.php';
   include 'functions.php';
+  require 'vars.php';
 ?>
 
 <!doctype html>
@@ -10,9 +11,7 @@
     <?php require 'html_navbar.php'; ?>
         <div class="container-fluid">
         <?php
-          $url_opts = unserialize(base64_decode($_GET[opts]));
-          print_r($url_opts);
-
+          $url_opts = unserialize(base64_decode($_GET['opts']));
 
           mysql_connect($db_name);
 
