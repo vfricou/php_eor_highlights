@@ -1,0 +1,23 @@
+FROM php:8.0-fpm-alpine AS builder
+
+WORKDIR /var/www/html
+
+COPY composer.json /var/www/html
+COPY composer.lock /var/www/html
+
+RUN mkdir public
+RUN apk -U --no-cache add curl
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+RUN composer install
+
+FROM php:8.0-fpm-alpine
+LABEL maintainer='Vincent Fricou <vincent@fricouv.eu>'
+
+COPY docker/php/php.ini /usr/local/etc/php/php.ini
+COPY docker/php/php-fpm-pool-docker.ini /usr/local/etc/php-fpm.d/docker.conf
+COPY include /var/www/html/include
+COPY index.php /var/www/html
+COPY --from=builder /var/www/html/public /var/www/html/public
+COPY --from=builder /var/www/html/vendor /var/www/html/vendor
+
+RUN docker-php-ext-install mysqli
