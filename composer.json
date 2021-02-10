@@ -1,6 +1,7 @@
 {
     "require": {
-        "twbs/bootstrap": "^4.5"
+      "twbs/bootstrap": "^4.5",
+      "ext-mysqli": "*"
     },
     "scripts": {
       "post-install-cmd": [
