@@ -1,5 +1,5 @@
 <?php
-  include_once 'define.php';
+  include_once '../conf/define.php';
   include 'functions.php';
   require 'vars.php';
 ?>
