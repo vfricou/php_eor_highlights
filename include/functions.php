@@ -1,7 +1,7 @@
 <?php
   require 'vars.php';
 
-  function mysql_connect($db_database)
+  function mysql_connect(string $db_database): void
   {
     global $db_host;
     global $db_user;
