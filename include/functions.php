@@ -1,5 +1,6 @@
 <?php
   require 'vars.php';
+  include 'init_sentry.php';
 
   function mysql_connect(string $db_database): void
   {

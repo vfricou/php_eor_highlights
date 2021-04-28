@@ -1,7 +1,8 @@
 {
     "require": {
       "twbs/bootstrap": "^4.5",
-      "ext-mysqli": "*"
+      "ext-mysqli": "*",
+        "sentry/sdk": "^3.1"
     },
     "scripts": {
       "post-install-cmd": [

@@ -4,4 +4,8 @@ $db_user = 'highlight';
 $db_pass = 'highligh';
 $db_port = '3306';
 $db_name = 'eor_dwh';
+$sentry_dsn = '';
+$sentry_env = '';
+$sentry_attach_stacktrace = true;
+$sentry_trace_sample_rate = 1.0;
 ?>

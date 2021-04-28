@@ -2,6 +2,7 @@
   include_once '../conf/define.php';
   include 'functions.php';
   require 'vars.php';
+  include 'init_sentry.php';
 ?>
 
 <!doctype html>
