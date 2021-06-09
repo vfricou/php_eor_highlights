@@ -1,7 +1,8 @@
 {
     "require": {
       "twbs/bootstrap": "^4.5",
-      "ext-mysqli": "*"
+      "ext-mysqli": "*",
+        "sentry/sdk": "^3.1"
     },
     "scripts": {
       "post-install-cmd": [
@@ -12,5 +13,8 @@
         "rm -rf public/bootstrap",
         "cp -R vendor/twbs/bootstrap/dist public/bootstrap"
       ]
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^0.12.80"
     }
 }

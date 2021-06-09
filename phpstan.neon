@@ -1,0 +1,7 @@
+parameters:
+  level: 6
+  paths:
+    - index.php
+    - include
+  ignoreErrors:
+    - '#Variable \$[a-zA-Z0-9_]* might not be defined.#'

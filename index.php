@@ -2,6 +2,9 @@
   require_once 'conf/define.php';
   require 'include/functions.php';
   require 'include/vars.php';
+  include 'include/init_sentry.php';
+  require_once './vendor/autoload.php';
+
 ?>
 <!doctype html>
 <html lang="en">

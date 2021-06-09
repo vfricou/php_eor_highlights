@@ -7,6 +7,7 @@ COPY composer.lock /var/www/html
 
 RUN mkdir public
 RUN apk -U --no-cache add curl
+RUN docker-php-ext-install mysqli
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 RUN composer install
 
